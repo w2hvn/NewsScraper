@@ -1,0 +1,17 @@
+- **File Name**: models.py
+- **Purpose**: Defines the SQLAlchemy Object-Relational Mapping (ORM) classes for the SQLite database tables.
+- **Dependencies**:
+  - `declarative_base`, `Column`, `Integer`, `String`, `Text`, `DateTime` from `sqlalchemy`
+- **Variables/Constants**:
+  - `Base = declarative_base()`
+- **Classes & Methods**:
+  - `class Article(Base):`
+    - `__tablename__: str = "articles"`
+    - `id: Column = Column(Integer, primary_key=True, autoincrement=True)`
+    - `url: Column = Column(String(512), unique=True, nullable=False)`
+    - `title: Column = Column(String(255), nullable=False)`
+    - `content: Column = Column(Text, nullable=False)`
+    - `published_date: Column = Column(String(100), nullable=True)`
+    - `scraped_at: Column = Column(DateTime, default=datetime.utcnow)`
+- **Logic / Workflow**:
+  - Define the `Article` model representing a single news article with required fields (`url`, `title`, `content`) and tracking fields (`published_date`, `scraped_at`). Ensure `url` is unique to prevent storing duplicates.
